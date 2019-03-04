@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Experience Logins
+  body
+    .container
+      .row
+        .col.s12.m8.l6.offset-m2.offset-l3
+          h2.center Login
+          form(method="post")
+            | {% csrf_token %}
+            | {{ form.as_p }}
+            button(type="submit").btn Login
