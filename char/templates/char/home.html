@@ -4,7 +4,15 @@
   <body>
     <p><a href="{% url 'logout' %}">Logout</a></p>
     <p><a href="{% url 'addExp' %}">Add Experience</a></p>
-    <h4>{{welcomeMessage}}</h4>{% for exp in exps %}
+    <h4>Welcome {{char.user}}!</h4>{% for exp in exps %}
     <p>{{exp.description}}</p>{% endfor %}
+    <p>STR: {{char.STR}}</p>
+    <p>DEX: {{char.DEX}}</p>
+    <p>VIT: {{char.VIT}}</p>
+    <p>END: {{char.END}}</p>
+    <p>INT: {{char.INT}}</p>
+    <p>SOC: {{char.SOC}}</p>
+    <p>EMO: {{char.EMO}}</p>
+    <p>SPR: {{char.SPR}}</p>
   </body>
 </html>

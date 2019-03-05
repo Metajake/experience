@@ -4,14 +4,15 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
-from .models import Experience
+from .models import Experience, Character
 from .forms import ExperienceAddForm
 
 @login_required
 def home(request):
-    exps = Experience.objects.filter(user=request.user)
+    char = Character.objects.get(user=request.user)
+    exps = Experience.objects.filter(character=request.user.character)
     context = {
-        'welcomeMessage': "Welcome "+str(request.user)+"!",
+        'char': char,
         'exps': exps,
     }
     return render(request, 'char/home.html', context)
@@ -19,12 +20,17 @@ def home(request):
 @login_required
 def addExp(request):
     if request.method == "POST":
-        print(request.POST)
         expAddForm = ExperienceAddForm(request.POST)
         if expAddForm.is_valid():
             newExp = expAddForm.save(commit=False)
             newExp.experienceDate = timezone.now()
-            newExp.user = str(request.user)
+            newExp.character = request.user.character
+            # print(request.user.character['STR'])
+            print(type(request.POST.get('type')))
+            # request.user.character[request.POST.get('type')] += 1
+            currentStat = getattr(request.user.character, request.POST.get('type'))
+            setattr(request.user.character, request.POST.get('type'), currentStat+1)
+            request.user.character.save()
             newExp.save()
             return redirect('/')
         else:

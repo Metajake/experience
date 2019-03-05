@@ -4,7 +4,15 @@ html
   body
     p: a(href="{% url 'logout' %}") Logout
     p: a(href="{% url 'addExp' %}") Add Experience
-    h4 {{welcomeMessage}}
+    h4 Welcome {{char.user}}!
     |{% for exp in exps %}
     p {{exp.description}}
     |{% endfor %}
+    p STR: {{char.STR}}
+    p DEX: {{char.DEX}}
+    p VIT: {{char.VIT}}
+    p END: {{char.END}}
+    p INT: {{char.INT}}
+    p SOC: {{char.SOC}}
+    p EMO: {{char.EMO}}
+    p SPR: {{char.SPR}}
