@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+  body
+    p: a(href="{% url 'logout' %}") Logout
+    h4 {{welcomeMessage}}
+    form#add-experience(method="POST")
+      | {% csrf_token %}
+      | {{ expAddForm.as_p }}
+      button(type="submit") Save

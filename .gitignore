@@ -1,3 +1,4 @@
+*.pyc
+prepros-6.config
 db.sqlite3
 char/migrations
-prepros-6.config

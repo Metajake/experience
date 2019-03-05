@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    <h4>{{welcomeMessage}}</h4>
+    <form id="add-experience" method="POST">
+      {% csrf_token %}
+      {{ expAddForm.as_p }}
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>
