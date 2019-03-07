@@ -2,6 +2,7 @@
 <html>
   <head></head>
   <body>
+    <p>{{notification}}</p>
     <p><a href="{% url 'logout' %}">Logout</a></p>
     <p><a href="{% url 'addExp' %}">Add Experience</a></p>
     <h4>Welcome {{char.user}}!</h4>{% for exp in exps %}
