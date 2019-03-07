@@ -8,7 +8,7 @@ class Character(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthDate = models.DateField(null=True, blank=True, auto_now=True)
     lastTimeExperienced = models.DateTimeField(blank=True, default=timezone.now)
-    DKR = models.IntegerField(default=0)
+    DRK = models.IntegerField(default=0)
     STR = models.IntegerField(default=0)
     DEX = models.IntegerField(default=0)
     VIT = models.IntegerField(default=0)

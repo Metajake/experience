@@ -1,19 +1,35 @@
+|{% load static %}
 doctype html
 html
   head
+    link(href="{% static 'css/global.css' %}" rel="stylesheet")
+    link(href="{% static 'css/char.css' %}" rel="stylesheet")
   body
-    p {{notification}}
-    p: a(href="{% url 'logout' %}") Logout
-    p: a(href="{% url 'addExp' %}") Add Experience
-    h4 Welcome {{char.user}}!
-    |{% for exp in exps %}
-    p {{exp.description}}
-    |{% endfor %}
-    p STR: {{char.STR}}
-    p DEX: {{char.DEX}}
-    p VIT: {{char.VIT}}
-    p END: {{char.END}}
-    p INT: {{char.INT}}
-    p SOC: {{char.SOC}}
-    p EMO: {{char.EMO}}
-    p SPR: {{char.SPR}}
+    .container
+      .col-30.pull-left
+        |{% if notification %}
+        p {{notification}}
+        |{% endif %}
+        p: a(href="{% url 'logout' %}") Logout
+        p: a(href="{% url 'addExp' %}") Add Experience
+        h4 Welcome {{char.user}}!
+        p STR: {{char.STR}}
+        p DEX: {{char.DEX}}
+        p VIT: {{char.VIT}}
+        p END: {{char.END}}
+        p INT: {{char.INT}}
+        p SOC: {{char.SOC}}
+        p EMO: {{char.EMO}}
+        p SPR: {{char.SPR}}
+        p Hidden Stats...
+        #tome-reveal Reveal Tome
+        #tome
+          |{% for exp in exps %}
+          p {{exp.description}}
+          |{% endfor %}
+      .col-70.pull-right
+        #phaser-canvas
+    script(src="{% static 'js/phaser.min.js' %}")
+    script(src="{% static 'js/jquery.js' %}")
+    script(src="{% static 'js/jqueryui.js' %}")
+    script(src="{% static 'js/char.js' %}")

@@ -1,19 +1,37 @@
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <link href="{% static 'css/global.css' %}" rel="stylesheet">
+    <link href="{% static 'css/char.css' %}" rel="stylesheet">
+  </head>
   <body>
-    <p>{{notification}}</p>
-    <p><a href="{% url 'logout' %}">Logout</a></p>
-    <p><a href="{% url 'addExp' %}">Add Experience</a></p>
-    <h4>Welcome {{char.user}}!</h4>{% for exp in exps %}
-    <p>{{exp.description}}</p>{% endfor %}
-    <p>STR: {{char.STR}}</p>
-    <p>DEX: {{char.DEX}}</p>
-    <p>VIT: {{char.VIT}}</p>
-    <p>END: {{char.END}}</p>
-    <p>INT: {{char.INT}}</p>
-    <p>SOC: {{char.SOC}}</p>
-    <p>EMO: {{char.EMO}}</p>
-    <p>SPR: {{char.SPR}}</p>
+    <div class="container">
+      <div class="col-30 pull-left">{% if notification %}
+        <p>{{notification}}</p>{% endif %}
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+        <p><a href="{% url 'addExp' %}">Add Experience</a></p>
+        <h4>Welcome {{char.user}}!</h4>
+        <p>STR: {{char.STR}}</p>
+        <p>DEX: {{char.DEX}}</p>
+        <p>VIT: {{char.VIT}}</p>
+        <p>END: {{char.END}}</p>
+        <p>INT: {{char.INT}}</p>
+        <p>SOC: {{char.SOC}}</p>
+        <p>EMO: {{char.EMO}}</p>
+        <p>SPR: {{char.SPR}}</p>
+        <p>Hidden Stats...</p>
+        <div id="tome-reveal">Reveal Tome</div>
+        <div id="tome">{% for exp in exps %}
+          <p>{{exp.description}}</p>{% endfor %}
+        </div>
+      </div>
+      <div class="col-70 pull-right">
+        <div id="phaser-canvas"></div>
+      </div>
+    </div>
+    <script src="{% static 'js/phaser.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jqueryui.js' %}"></script>
+    <script src="{% static 'js/char.js' %}"></script>
   </body>
 </html>
