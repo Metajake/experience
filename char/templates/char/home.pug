@@ -3,9 +3,7 @@ doctype html
 html
   head
     title Character Sheet
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(href="{% static 'css/global.css' %}" rel="stylesheet")
+    include includes/head.pug
     link(href="{% static 'css/char.css' %}" rel="stylesheet")
   body
     .container
