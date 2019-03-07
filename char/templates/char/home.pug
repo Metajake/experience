@@ -6,8 +6,8 @@ html
     include includes/head.pug
     link(href="{% static 'css/char.css' %}" rel="stylesheet")
   body
-    .container
-      .col-30.pull-left
+    .grid-
+      .item
         |{% if notification %}
         p {{notification}}
         |{% endif %}
@@ -28,9 +28,10 @@ html
           |{% for exp in exps %}
           p {{exp.description}}
           |{% endfor %}
-      .col-70.pull-right
+      .item
         #phaser-canvas
     script(src="{% static 'js/phaser.min.js' %}")
     script(src="{% static 'js/jquery.js' %}")
     script(src="{% static 'js/jqueryui.js' %}")
     script(src="{% static 'js/char.js' %}")
+    script(src="{% static 'js/char_game.js' %}")

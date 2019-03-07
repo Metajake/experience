@@ -8,8 +8,8 @@
     <link href="{% static 'css/char.css' %}" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-      <div class="col-30 pull-left">{% if notification %}
+    <div class="grid-">
+      <div class="item">{% if notification %}
         <p>{{notification}}</p>{% endif %}
         <p><a href="{% url 'logout' %}">Logout</a></p>
         <p><a href="{% url 'addExp' %}">Add Experience</a></p>
@@ -28,7 +28,7 @@
           <p>{{exp.description}}</p>{% endfor %}
         </div>
       </div>
-      <div class="col-70 pull-right">
+      <div class="item">
         <div id="phaser-canvas"></div>
       </div>
     </div>
@@ -36,5 +36,6 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/jqueryui.js' %}"></script>
     <script src="{% static 'js/char.js' %}"></script>
+    <script src="{% static 'js/char_game.js' %}"></script>
   </body>
 </html>

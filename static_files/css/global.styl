@@ -1,16 +1,23 @@
 *
   box-sizing:border-box
+html, body
+  height:100%
 
+div[class*="col-"]
+  height:100%
 .col-30
   width:30%
 .col-70
   width:70%
 
-.container::after
-  content:''
-  display:block
-  clear:both
-.pull-left
-  float:left
-.pull-right
-  float:right
+div[class*="grid-"]
+  height:100%
+  display:grid
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+  // align-items: center
+  // .item
+  //   min-height:360px
+  // &[class*='-50-50']
+  //   grid-template-columns: 50% 50%
+  // &[class*='-25-75']
+  //   grid-template-columns: 25% 75%
