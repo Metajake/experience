@@ -24,7 +24,7 @@
         <p>SPR: {{char.SPR}}</p>
         <p>Hidden Stats...</p>
         <div id="tome-reveal">Reveal Tome</div>
-        <div id="tome">{% for exp in exps %}
+        <div id="tome">{% for exp in char.experiences.all %}
           <p>{{exp.description}}</p>{% endfor %}
         </div>
       </div>

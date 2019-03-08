@@ -10,10 +10,10 @@ from .forms import ExperienceAddForm
 @login_required
 def home(request, notification=""):
     char = Character.objects.get(user=request.user)
-    exps = Experience.objects.filter(character=request.user.character)
+    # exps = Experience.objects.filter(character=request.user.character)
     context = {
         'char': char,
-        'exps': exps,
+        # 'exps': exps,
     }
     if len(notification) > 0:
         context['notification'] = notification

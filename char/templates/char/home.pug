@@ -25,7 +25,7 @@ html
         p Hidden Stats...
         #tome-reveal Reveal Tome
         #tome
-          |{% for exp in exps %}
+          |{% for exp in char.experiences.all %}
           p {{exp.description}}
           |{% endfor %}
       .item
