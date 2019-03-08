@@ -15,3 +15,4 @@ class CharacterAdmin(admin.ModelAdmin):
 
 admin.site.register(Experience)
 admin.site.register(Character, CharacterAdmin)
+admin.site.register(CharacterExperiences)

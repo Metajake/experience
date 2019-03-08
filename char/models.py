@@ -46,5 +46,5 @@ class CharacterExperiences(models.Model):
     class Meta:
         verbose_name = "Character Experience"
         verbose_name_plural = "Character Experiences"
-    def __str__(self):
-        return self.experience.description+" experienced by "+str(self.character.user)
+    # def __str__(self):
+    #     return self.experience.description+" experienced by "+str(self.character.user)
