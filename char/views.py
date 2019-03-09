@@ -3,9 +3,11 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from random import randint
 
 from .models import Experience, Character, CharacterExperiences
-from .forms import ExperienceAddForm, CharacterExperienceAddForm
+from .forms import CharacterExperienceAddForm
 
 @login_required
 def home(request, notification=""):
@@ -47,3 +49,38 @@ def addExp(request):
         context['expAddForm'] = expAddForm
     context['welcomeMessage'] = "Add an Experience"
     return render(request, 'char/add.html', context)
+
+@csrf_exempt
+def addExp2(request):
+    submission = request.POST.dict()
+    toReturn = ''
+    context = {}
+    c = Character.objects.get(user=request.user)
+    if timezone.now() >= c.lastTimeExperienced + timezone.timedelta(minutes=15):
+        if submission['type'] == 'exp':
+            e = Experience(description = submission['exp-description'], type = submission['stat'], experienceDate = timezone.now())
+            e.save()
+            ce = CharacterExperiences(character = request.user.character, experience = e)
+            currentStat = getattr(request.user.character, submission['stat'])
+            setattr(request.user.character, submission['stat'], currentStat+1)
+            setattr(request.user.character, 'lastTimeExperienced', timezone.now())
+            request.user.character.save()
+            ce.save()
+            toReturn = "Exp Added!"
+        elif submission['type'] == 'work':
+            currentStat = getattr(request.user.character, 'money')
+            setattr(request.user.character, 'money', currentStat + randint(0, 9))
+            setattr(request.user.character, 'lastTimeExperienced', timezone.now())
+            request.user.character.save()
+            toReturn = 'Worked!'
+        else:
+            toReturn = 'nothing'
+
+        if submission['weather'] != 'none':
+            print(submission['weather'])
+            currentStat = getattr(request.user.character, submission['weather'])
+            setattr(request.user.character, submission['weather'], currentStat+1)
+            request.user.character.save()
+    else:
+        toReturn = "15min"
+    return HttpResponse(toReturn)

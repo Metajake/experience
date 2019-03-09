@@ -5,14 +5,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/global.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">
   </head>
   <body>
     <p><a href="{% url 'logout' %}">Logout</a></p>
     <h4>{{welcomeMessage}}</h4>
-    <form id="add-experience" method="POST">
-      {% csrf_token %}
-      {{ expAddForm.as_p }}
+    <h4 id="notification"></h4>
+    <form id="add">
+      <p>
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+          <option value="exp">Experience</option>
+          <option value="work">Work</option>
+        </select>
+      </p>
+      <fieldset class="type" id="experience">
+        <p>
+          <label for="exp-description">Description:</label>
+          <input id="exp-description" type="text" name="exp-description">
+        </p>
+        <p>
+          <label for="stat">Stat:</label>
+          <select id="stat" name="stat">
+            <option value="STR">Strength</option>
+            <option value="INT">Intellect</option>
+            <option value="EMO">Emotion</option>
+            <option value="VIT">Vitality</option>
+            <option value="DEX">Dexterity</option>
+            <option value="SPR">Spirit</option>
+            <option value="SOC">Social</option>
+            <option value="END">Endurance</option>
+          </select>
+        </p>
+      </fieldset>
+      <fieldset class="type" id="work"></fieldset>
+      <fieldset id="weather">
+        <p>
+          <label for="weather">Extreme Weather Condition:</label>
+          <select id="weather" name="weather">
+            <option value="none">none</option>
+            <option value="cold">cold</option>
+            <option value="hot">hot</option>
+            <option value="dry">dry</option>
+            <option value="wet">wet</option>
+          </select>
+        </p>
+      </fieldset>
       <button type="submit">Save</button>
     </form>
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <script src="{% static 'js/add.js'%}"></script>
   </body>
 </html>

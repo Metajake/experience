@@ -1,1 +1,1 @@
-*{-webkit-box-sizing:border-box;box-sizing:border-box}body,html{height:100%}div[class*=col-]{height:100%}.col-30{width:30%}.col-70{width:70%}div[class*=grid-]{height:100%;display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
+*{-webkit-box-sizing:border-box;box-sizing:border-box}body,html{height:100%}#notification{color:#f00}div[class*=col-]{height:100%}.col-30{width:30%}.col-70{width:70%}div[class*=grid-]{height:100%;display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}

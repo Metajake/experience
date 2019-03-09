@@ -4,10 +4,45 @@ html
   head
     title Add Experience
     include includes/head.pug
+    link(rel="stylesheet" href="{% static 'css/add.css' %}")
   body
     p: a(href="{% url 'logout' %}") Logout
     h4 {{welcomeMessage}}
-    form#add-experience(method="POST")
-      | {% csrf_token %}
-      | {{ expAddForm.as_p }}
+    h4#notification
+    form#add(method=POST)
+      p
+        label(for="type") Type:
+        select#type(name="type")
+          option(value="exp") Experience
+          option(value="work") Work
+      fieldset.type#experience
+        p
+          label(for="exp-description") Description:
+          input#exp-description(type="text" name="exp-description")
+        p
+          label(for='stat') Stat:
+          select#stat(name='stat')
+            option(value='STR') Strength
+            option(value='INT') Intellect
+            option(value='EMO') Emotion
+            option(value='VIT') Vitality
+            option(value='DEX') Dexterity
+            option(value='SPR') Spirit
+            option(value='SOC') Social
+            option(value='END') Endurance
+      fieldset.type#work
+        //- p
+        //-   label(for="work-description") Description (1-2 words):
+        //-   input#work-description(type="text" name="work-description")
+      fieldset#weather
+        p
+          label(for='weather') Extreme Weather Condition:
+          select#weather(name='weather')
+            option(value='none') none
+            option(value='cold') cold
+            option(value='hot') hot
+            option(value='dry') dry
+            option(value='wet') wet
       button(type="submit") Save
+    script(src="{% static 'js/jquery.js'%}")
+    script(src="{% static 'js/add.js'%}")

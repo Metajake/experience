@@ -14,6 +14,7 @@ class Experience(models.Model):
 class Character(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthDate = models.DateField(null=True, blank=True, auto_now=True)
+    money = models.IntegerField(default = 0)
     lastTimeExperienced = models.DateTimeField(blank=True, default=timezone.now)
     experiences = models.ManyToManyField(
         Experience,
@@ -29,6 +30,10 @@ class Character(models.Model):
     SOC = models.IntegerField(default=0)
     EMO = models.IntegerField(default=0)
     SPR = models.IntegerField(default=0)
+    cold = models.IntegerField(default=0)
+    hot = models.IntegerField(default=0)
+    dry = models.IntegerField(default=0)
+    wet = models.IntegerField(default=0)
     def __str__(self):
         return str(self.user)
 
@@ -46,5 +51,3 @@ class CharacterExperiences(models.Model):
     class Meta:
         verbose_name = "Character Experience"
         verbose_name_plural = "Character Experiences"
-    # def __str__(self):
-    #     return self.experience.description+" experienced by "+str(self.character.user)

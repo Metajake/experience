@@ -9,7 +9,7 @@ html
     .grid-
       .item
         |{% if notification %}
-        p {{notification}}
+        p#notification {{notification}}
         |{% endif %}
         p: a(href="{% url 'logout' %}") Logout
         p: a(href="{% url 'addExp' %}") Add Experience
@@ -23,6 +23,11 @@ html
         p EMO: {{char.EMO}}
         p SPR: {{char.SPR}}
         p Hidden Stats...
+        p Cold Resistance: {{char.cold}}
+        p Heat Resistance: {{char.hot}}
+        p Dry Weather Affinity: {{char.dry}}
+        p Wet Weather Affinity: {{char.wet}}
+        p Riches: {{char.money}}
         #tome-reveal Reveal Tome
         #tome
           |{% for exp in char.experiences.all %}

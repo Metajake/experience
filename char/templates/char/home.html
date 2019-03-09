@@ -10,7 +10,7 @@
   <body>
     <div class="grid-">
       <div class="item">{% if notification %}
-        <p>{{notification}}</p>{% endif %}
+        <p id="notification">{{notification}}</p>{% endif %}
         <p><a href="{% url 'logout' %}">Logout</a></p>
         <p><a href="{% url 'addExp' %}">Add Experience</a></p>
         <h4>Welcome {{char.user}}!</h4>
@@ -23,6 +23,11 @@
         <p>EMO: {{char.EMO}}</p>
         <p>SPR: {{char.SPR}}</p>
         <p>Hidden Stats...</p>
+        <p>Cold Resistance: {{char.cold}}</p>
+        <p>Heat Resistance: {{char.hot}}</p>
+        <p>Dry Weather Affinity: {{char.dry}}</p>
+        <p>Wet Weather Affinity: {{char.wet}}</p>
+        <p>Riches: {{char.money}}</p>
         <div id="tome-reveal">Reveal Tome</div>
         <div id="tome">{% for exp in char.experiences.all %}
           <p>{{exp.description}}</p>{% endfor %}
