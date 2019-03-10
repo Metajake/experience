@@ -34,6 +34,7 @@ class Character(models.Model):
     hot = models.IntegerField(default=0)
     dry = models.IntegerField(default=0)
     wet = models.IntegerField(default=0)
+    health = models.IntegerField(default=0)
     def __str__(self):
         return str(self.user)
 

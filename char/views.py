@@ -22,36 +22,13 @@ def home(request, notification=""):
 @login_required
 def addExp(request):
     context = {}
-    if request.method == "POST":
-        c = Character.objects.get(user=request.user)
-        if timezone.now() >= c.lastTimeExperienced + timezone.timedelta(minutes=15):
-            expAddForm = CharacterExperienceAddForm(request.POST)
-            if expAddForm.is_valid():
-                newExp = expAddForm.save(commit=False)
-                e = Experience(description = request.POST.get('description'), type=request.POST.get('type'), experienceDate = timezone.now())
-                e.save()
-                ce = CharacterExperiences(character=request.user.character,experience = e)
-                currentStat = getattr(request.user.character, request.POST.get('type'))
-                setattr(request.user.character, request.POST.get('type'), currentStat+1)
-                setattr(request.user.character, 'lastTimeExperienced', timezone.now())
-                request.user.character.save()
-                print(ce)
-                ce.save()
-                return redirect('/')
-            else:
-                return redirect('/')
-        else:
-            context['notification'] = "Hasn't been 15 minutes."
-            context['char'] = Character.objects.get(user=request.user)
-            return redirect('note/Hasn\'t been 15 minutes.', context)
-    else:
-        expAddForm = CharacterExperienceAddForm()
-        context['expAddForm'] = expAddForm
+    expAddForm = CharacterExperienceAddForm()
+    context['expAddForm'] = expAddForm
     context['welcomeMessage'] = "Add an Experience"
     return render(request, 'char/add.html', context)
 
 @csrf_exempt
-def addExp2(request):
+def ajaxAdd(request):
     submission = request.POST.dict()
     toReturn = ''
     context = {}
@@ -64,14 +41,22 @@ def addExp2(request):
             currentStat = getattr(request.user.character, submission['stat'])
             setattr(request.user.character, submission['stat'], currentStat+1)
             setattr(request.user.character, 'lastTimeExperienced', timezone.now())
-            request.user.character.save()
             ce.save()
             toReturn = "Exp Added!"
         elif submission['type'] == 'work':
             currentStat = getattr(request.user.character, 'money')
-            setattr(request.user.character, 'money', currentStat + randint(0, 9))
+            setattr(request.user.character, 'money', currentStat + randint(1, 9))
             setattr(request.user.character, 'lastTimeExperienced', timezone.now())
-            request.user.character.save()
+            toReturn = 'Worked!'
+        elif submission['type'] == 'eat':
+            currentHealth = getattr(request.user.character, 'health')
+            if 'balanced-meal' in submission:
+                setattr(request.user.character, 'health', currentHealth+1)
+            else:
+                setattr(request.user.character, 'health', currentHealth-1)
+            if 'company' in submission:
+                currentStat = getattr(request.user.character, 'SOC')
+                setattr(request.user.character, 'SOC', currentStat+1)
             toReturn = 'Worked!'
         else:
             toReturn = 'nothing'
@@ -80,7 +65,8 @@ def addExp2(request):
             print(submission['weather'])
             currentStat = getattr(request.user.character, submission['weather'])
             setattr(request.user.character, submission['weather'], currentStat+1)
-            request.user.character.save()
+            
+        request.user.character.save()
     else:
         toReturn = "15min"
     return HttpResponse(toReturn)

@@ -6,16 +6,21 @@ function updateForm(){
   formType = $('#add #type').val()
   switch(formType){
     case 'exp':
-      resetFieldsets()
-      $('#experience').show();
-      setDisabledFields()
+      updateFieldsets('#experience');
       break;
     case 'work':
-      resetFieldsets()
-      $('#work').show();
-      setDisabledFields()
+      updateFieldsets('#work');
+      break;
+    case 'eat':
+      updateFieldsets('#eat');
       break;
   }
+}
+
+function updateFieldsets(type){
+  resetFieldsets()
+  $(type).show();
+  setDisabledFields()
 }
 
 function resetFieldsets(){
@@ -37,7 +42,7 @@ $('#add').submit(function(e){
   e.preventDefault()
 
   $.ajax({
-    url: "/add2/",
+    url: "/ajaxAdd/",
     type: "POST",
     data: $('#add').serialize(),
     success: function(data){

@@ -15,6 +15,7 @@ html
         select#type(name="type")
           option(value="exp") Experience
           option(value="work") Work
+          option(value="eat") Eat
       fieldset.type#experience
         p
           label(for="exp-description") Description:
@@ -34,6 +35,13 @@ html
         //- p
         //-   label(for="work-description") Description (1-2 words):
         //-   input#work-description(type="text" name="work-description")
+      fieldset.type#eat
+        p
+          label(for="balanced-meal") Balanced Meal:
+          input#balanced-meal(type="checkbox" name="balanced-meal") 
+        p
+          label(for="company") Eat With Company:
+          input#company(type="checkbox" name="company") 
       fieldset#weather
         p
           label(for='weather') Extreme Weather Condition:
