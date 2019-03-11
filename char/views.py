@@ -38,9 +38,9 @@ def ajaxAdd(request):
             e = Experience(description = submission['exp-description'], type = submission['stat'], experienceDate = timezone.now())
             e.save()
             ce = CharacterExperiences(character = request.user.character, experience = e)
-            currentStat = getattr(request.user.character, submission['stat'])
-            setattr(request.user.character, submission['stat'], currentStat+1)
-            setattr(request.user.character, 'lastTimeExperienced', timezone.now())
+            if submission['stat'] != 'none':
+                currentStat = getattr(request.user.character, submission['stat'])
+                setattr(request.user.character, submission['stat'], currentStat+1)
             ce.save()
             toReturn = "Exp Added!"
         elif submission['type'] == 'work':
@@ -62,10 +62,14 @@ def ajaxAdd(request):
             toReturn = 'nothing'
 
         if submission['weather'] != 'none':
-            print(submission['weather'])
             currentStat = getattr(request.user.character, submission['weather'])
             setattr(request.user.character, submission['weather'], currentStat+1)
-            
+
+        if submission['affinity'] != 'none':
+            currentStat = getattr(request.user.character, submission['affinity'])
+            setattr(request.user.character, submission['affinity'], currentStat+1)
+
+        setattr(request.user.character, 'lastTimeExperienced', timezone.now())
         request.user.character.save()
     else:
         toReturn = "15min"
