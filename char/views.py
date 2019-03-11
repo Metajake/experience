@@ -59,6 +59,10 @@ def ajaxAdd(request):
                 currentStat = getattr(request.user.character, 'SOC')
                 setattr(request.user.character, 'SOC', currentStat+1)
             toReturn = 'Worked!'
+        elif submission['type'] == 'private':
+            currentStat = getattr(request.user.character, 'DRK')
+            setattr(request.user.character, 'DRK', currentStat + 1)
+            toReturn = 'Private...'
         else:
             toReturn = 'nothing'
 

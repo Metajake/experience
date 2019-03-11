@@ -14,6 +14,9 @@ function updateForm(){
     case 'eat':
       updateFieldsets('#eat');
       break;
+    case 'private':
+      updateFieldsets('#private');
+      break;
   }
 }
 

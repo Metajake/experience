@@ -10,12 +10,12 @@ html
     h4 {{welcomeMessage}}
     h4#notification
     form#add(method=POST)
-      p
-        label(for="type") Type:
-        select#type(name="type")
-          option(value="exp") Experience
-          option(value="work") Work
-          option(value="eat") Eat
+      label(for="type") Type:
+      select#type(name="type")
+        option(value="exp") Experience
+        option(value="work") Work
+        option(value="eat") Eat
+        option(value="private") Private
       fieldset.type#experience
         p
           label(for="exp-description") Description:
@@ -43,23 +43,24 @@ html
         p
           label(for="company") Eat With Company:
           input#company(type="checkbox" name="company") 
+      fieldset.type#private
+        p Evil is a source of moral intelligence in the sense that we need to learn from our shadow, from our dark side, in order to be good. - John Bradshaw
+        
       hr
       fieldset#weather
-        p
-          label(for='weather') Extreme Weather Condition:
-          select#weather(name='weather')
-            option(value='none') none
-            option(value='cold') cold
-            option(value='hot') hot
-            option(value='dry') dry
-            option(value='wet') wet
+        label(for='weather') Extreme Weather Condition:
+        select#weather(name='weather')
+          option(value='none') none
+          option(value='cold') cold
+          option(value='hot') hot
+          option(value='dry') dry
+          option(value='wet') wet
       fieldset#affinity
-        p
-          label(for='affinity') Affinity:
-          select#affinit(name='affinity')
-            option(value='none') none
-            option(value='nature') Nature
-            option(value='animal') Animal
+        label(for='affinity') Affinity:
+        select#affinit(name='affinity')
+          option(value='none') none
+          option(value='nature') Nature
+          option(value='animal') Animal
       button(type="submit") Save
     script(src="{% static 'js/jquery.js'%}")
     script(src="{% static 'js/add.js'%}")

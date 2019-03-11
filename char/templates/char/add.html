@@ -12,14 +12,13 @@
     <h4>{{welcomeMessage}}</h4>
     <h4 id="notification"></h4>
     <form id="add">
-      <p>
-        <label for="type">Type:</label>
-        <select id="type" name="type">
-          <option value="exp">Experience</option>
-          <option value="work">Work</option>
-          <option value="eat">Eat</option>
-        </select>
-      </p>
+      <label for="type">Type:</label>
+      <select id="type" name="type">
+        <option value="exp">Experience</option>
+        <option value="work">Work</option>
+        <option value="eat">Eat</option>
+        <option value="private">Private</option>
+      </select>
       <fieldset class="type" id="experience">
         <p>
           <label for="exp-description">Description:</label>
@@ -56,28 +55,27 @@
           <input id="company" type="checkbox" name="company">
         </p>
       </fieldset>
+      <fieldset class="type" id="private">
+        <p>Evil is a source of moral intelligence in the sense that we need to learn from our shadow, from our dark side, in order to be good. - John Bradshaw</p>
+      </fieldset>
       <hr>
       <fieldset id="weather">
-        <p>
-          <label for="weather">Extreme Weather Condition:</label>
-          <select id="weather" name="weather">
-            <option value="none">none</option>
-            <option value="cold">cold</option>
-            <option value="hot">hot</option>
-            <option value="dry">dry</option>
-            <option value="wet">wet</option>
-          </select>
-        </p>
+        <label for="weather">Extreme Weather Condition:</label>
+        <select id="weather" name="weather">
+          <option value="none">none</option>
+          <option value="cold">cold</option>
+          <option value="hot">hot</option>
+          <option value="dry">dry</option>
+          <option value="wet">wet</option>
+        </select>
       </fieldset>
       <fieldset id="affinity">
-        <p>
-          <label for="affinity">Affinity:</label>
-          <select id="affinit" name="affinity">
-            <option value="none">none</option>
-            <option value="nature">Nature</option>
-            <option value="animal">Animal</option>
-          </select>
-        </p>
+        <label for="affinity">Affinity:</label>
+        <select id="affinit" name="affinity">
+          <option value="none">none</option>
+          <option value="nature">Nature</option>
+          <option value="animal">Animal</option>
+        </select>
       </fieldset>
       <button type="submit">Save</button>
     </form>
