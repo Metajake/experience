@@ -46,7 +46,8 @@ def ajaxAdd(request):
         elif submission['type'] == 'work':
             currentStat = getattr(request.user.character, 'money')
             setattr(request.user.character, 'money', currentStat + randint(1, 9))
-            setattr(request.user.character, 'lastTimeExperienced', timezone.now())
+            if submission['work-description'] != '':
+                request.user.character.work.append(submission['work-description'])
             toReturn = 'Worked!'
         elif submission['type'] == 'eat':
             currentHealth = getattr(request.user.character, 'health')

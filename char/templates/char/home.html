@@ -8,31 +8,35 @@
     <link href="{% static 'css/char.css' %}" rel="stylesheet">
   </head>
   <body>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    <p><a href="{% url 'addExp' %}">Add Experience</a></p>{% if notification %}
+    <p id="notification">{{notification}}</p>{% endif %}
+    <h4>Welcome {{char.user}}!</h4>
     <div class="grid-">
-      <div class="item">{% if notification %}
-        <p id="notification">{{notification}}</p>{% endif %}
-        <p><a href="{% url 'logout' %}">Logout</a></p>
-        <p><a href="{% url 'addExp' %}">Add Experience</a></p>
-        <h4>Welcome {{char.user}}!</h4>
-        <p>STR: {{char.STR}}</p>
-        <p>DEX: {{char.DEX}}</p>
-        <p>VIT: {{char.VIT}}</p>
-        <p>END: {{char.END}}</p>
-        <p>INT: {{char.INT}}</p>
-        <p>SOC: {{char.SOC}}</p>
-        <p>EMO: {{char.EMO}}</p>
-        <p>SPR: {{char.SPR}}</p>
-        <p>Hidden Stats...</p>
-        <p>Cold Resistance: {{char.cold}}</p>
-        <p>Heat Resistance: {{char.hot}}</p>
-        <p>Dry Weather Affinity: {{char.dry}}</p>
-        <p>Wet Weather Affinity: {{char.wet}}</p>
-        <p>Riches: {{char.money}}</p>
-        <p>Animal Empathy: {{char.animal}}</p>
-        <p>Nature Affinity: {{char.nature}}</p>
-        <div id="tome-reveal">Reveal Tome</div>
-        <div id="tome">{% for exp in char.experiences.all %}
-          <p>{{exp.description}}</p>{% endfor %}
+      <div class="item float-wrapper">
+        <div class="pull-left col-30">
+          <p>STR: {{char.STR}}</p>
+          <p>DEX: {{char.DEX}}</p>
+          <p>VIT: {{char.VIT}}</p>
+          <p>END: {{char.END}}</p>
+          <p>INT: {{char.INT}}</p>
+          <p>SOC: {{char.SOC}}</p>
+          <p>EMO: {{char.EMO}}</p>
+          <p>SPR: {{char.SPR}}</p>
+          <p>DRK: {{char.DRK}}</p>
+        </div>
+        <div class="pull-right col-70">
+          <p>Cold Resistance: {{char.cold}}</p>
+          <p>Heat Resistance: {{char.hot}}</p>
+          <p>Dry Weather Affinity: {{char.dry}}</p>
+          <p>Wet Weather Affinity: {{char.wet}}</p>
+          <p>Riches: {{char.money}}</p>
+          <p>Animal Empathy: {{char.animal}}</p>
+          <p>Nature Affinity: {{char.nature}}</p>
+          <h3 id="tome-reveal">Reveal Tome</h3>
+          <div id="tome">{% for exp in char.experiences.all %}
+            <p>{{exp.description}}</p>{% endfor %}
+          </div>
         </div>
       </div>
       <div class="item">

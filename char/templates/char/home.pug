@@ -6,35 +6,43 @@ html
     include includes/head.pug
     link(href="{% static 'css/char.css' %}" rel="stylesheet")
   body
+    p: a(href="{% url 'logout' %}") Logout
+    p: a(href="{% url 'addExp' %}") Add Experience
+    |{% if notification %}
+    p#notification {{notification}}
+    |{% endif %}
+    h4 Welcome {{char.user}}!
     .grid-
-      .item
-        |{% if notification %}
-        p#notification {{notification}}
-        |{% endif %}
-        p: a(href="{% url 'logout' %}") Logout
-        p: a(href="{% url 'addExp' %}") Add Experience
-        h4 Welcome {{char.user}}!
-        p STR: {{char.STR}}
-        p DEX: {{char.DEX}}
-        p VIT: {{char.VIT}}
-        p END: {{char.END}}
-        p INT: {{char.INT}}
-        p SOC: {{char.SOC}}
-        p EMO: {{char.EMO}}
-        p SPR: {{char.SPR}}
-        p Hidden Stats...
-        p Cold Resistance: {{char.cold}}
-        p Heat Resistance: {{char.hot}}
-        p Dry Weather Affinity: {{char.dry}}
-        p Wet Weather Affinity: {{char.wet}}
-        p Riches: {{char.money}}
-        p Animal Empathy: {{char.animal}}
-        p Nature Affinity: {{char.nature}}
-        #tome-reveal Reveal Tome
-        #tome
-          |{% for exp in char.experiences.all %}
-          p {{exp.description}}
-          |{% endfor %}
+      .item.float-wrapper
+        .pull-left.col-30
+          p STR: {{char.STR}}
+          p DEX: {{char.DEX}}
+          p VIT: {{char.VIT}}
+          p END: {{char.END}}
+          p INT: {{char.INT}}
+          p SOC: {{char.SOC}}
+          p EMO: {{char.EMO}}
+          p SPR: {{char.SPR}}
+          p DRK: {{char.DRK}}
+        .pull-right.col-70
+          p Cold Resistance: {{char.cold}}
+          p Heat Resistance: {{char.hot}}
+          p Dry Weather Affinity: {{char.dry}}
+          p Wet Weather Affinity: {{char.wet}}
+          p Riches: {{char.money}}
+          p Animal Empathy: {{char.animal}}
+          p Nature Affinity: {{char.nature}}
+          h3#tome-reveal Reveal Tome
+          #tome
+            |{% for exp in char.experiences.all %}
+            p {{exp.description}}
+            |{% endfor %}
+          //- #work
+          //-   h3 Jobs:
+          //-   p.
+          //-     {% for job in char.work %}
+          //-     {{job}},&nbsp;
+          //-     {% endfor %}
       .item
         #phaser-canvas
     script(src="{% static 'js/phaser.min.js' %}")

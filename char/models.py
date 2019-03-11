@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -16,6 +17,7 @@ class Character(models.Model):
     birthDate = models.DateField(null=True, blank=True, auto_now=True)
     money = models.IntegerField(default = 0)
     lastTimeExperienced = models.DateTimeField(blank=True, default=timezone.now)
+    work = ArrayField(models.CharField(max_length = 30, blank=True), blank=True, default=list)
     experiences = models.ManyToManyField(
         Experience,
         through = 'CharacterExperiences',
